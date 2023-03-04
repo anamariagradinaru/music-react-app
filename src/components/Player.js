@@ -4,6 +4,7 @@ import {
     faPlay,
     faAngleLeft,
     faAngleRight,
+    faPause,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
@@ -11,7 +12,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     console.log(audioRef);
 
     const playSongHandler = () => {
-        console.log(isPlaying);
         if (isPlaying) {
             audioRef.current.pause();
             setIsPlaying(false);
@@ -38,13 +38,22 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
                     size="2x"
                     icon={faAngleLeft}
                 />
-                <FontAwesomeIcon
-                    onClick={playSongHandler}
-                    className="play"
-                    size="2x"
-                    icon={faPlay}
-                />
-                <FontAwesomeIcon icon="fa-solid fa-pause" />
+                {isPlaying ? (
+                    <FontAwesomeIcon
+                        onClick={playSongHandler}
+                        className="pause"
+                        size="2x"
+                        icon={faPause}
+                    />
+                ) : (
+                    <FontAwesomeIcon
+                        onClick={playSongHandler}
+                        className="play"
+                        size="2x"
+                        icon={faPlay}
+                    />
+                )}
+
                 <FontAwesomeIcon
                     className="skip-forward"
                     size="2x"
